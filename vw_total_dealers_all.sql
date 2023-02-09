@@ -1,4 +1,3 @@
---v1---
 SELECT
     ym_s_date,
     COALESCE(ym_s_clientID, 0) AS ym_s_clientID,
