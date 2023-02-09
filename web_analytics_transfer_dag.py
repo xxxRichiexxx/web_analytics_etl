@@ -48,10 +48,9 @@ def transform(data):
 
 def load(data, table_name, query_part):
 
-    # pd.read_sql_query(
-    #     f"""DELETE FROM dbo.{table_name}""" + query_part,
-    #     external_bi_engine,
-    # )
+    external_bi_engine.execute(
+        f"""DELETE FROM dbo.{table_name}""" + query_part,
+    )
     print(data)
 
     data.to_sql(
@@ -106,7 +105,7 @@ with DAG(
         tasks = []
         data_types = (
             'vw_optimatica_dealers',
-            # 'vw_total_dealers',
+            'vw_total_dealers',
             # 'vw_total_dealers_all',
             # 'vw_worklists_models_dealers',
             # 'vw_worklists_models_dealers_all',
@@ -120,7 +119,7 @@ with DAG(
                 )
             )
 
-        tasks
+        # tasks[0] >> tasks[1] >> tasks[2] >> tasks[3] >> tasks[4]
 
     end = DummyOperator(task_id='Конец')
 
