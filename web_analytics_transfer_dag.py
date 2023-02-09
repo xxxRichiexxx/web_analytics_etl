@@ -31,7 +31,7 @@ dwh_engine = sa.create_engine(
 
 def extract(table_name, query_part):
     return pd.read_sql_query(
-        f"""SELECT * FROM sttgaz.{table_name}""" + query_part,
+        f"""SELECT * FROM sttgaz.{table_name} LIMIT 10""" + query_part,
         dwh_engine,
     )
 
@@ -42,10 +42,10 @@ def transform(data):
 
 def load(data, table_name, query_part):
 
-    pd.read_sql_query(
-        f"""DELETE FROM {table_name}""" + query_part,
-        external_bi_engine,
-    )
+    # pd.read_sql_query(
+    #     f"""DELETE FROM {table_name}""" + query_part,
+    #     external_bi_engine,
+    # )
 
     data.to_sql(
         table_name,
