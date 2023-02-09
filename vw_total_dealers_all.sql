@@ -13,5 +13,5 @@ SELECT
     count_goals,
     content,
     cid,
-    bounce,
+    bounce
 FROM sttgaz.vw_total_dealers_all;
