@@ -9,9 +9,6 @@ from airflow.utils.task_group import TaskGroup
 from airflow.hooks.base import BaseHook
 from airflow.operators.dummy import DummyOperator
 from airflow.utils.dates import days_ago
-from airflow.contrib.operators.vertica_operator import VerticaOperator
-from airflow.operators.python import BranchPythonOperator
-from airflow.models import TaskInstance
 
 
 external_bi_con = BaseHook.get_connection('ext_pbi')
@@ -30,7 +27,7 @@ dwh_engine = sa.create_engine(
 
 
 def extract(table_name, query_part):
-
+    """Извлечение данных из источника."""
     with open(fr'/home/da/airflow/dags/web_analytics_etl/{table_name}.sql', 'r') as f:
         command = f.read() + query_part
 
@@ -43,10 +40,12 @@ def extract(table_name, query_part):
 
 
 def transform(data):
+    """Трансформация данных (если необходимо)."""
     return data
 
 
 def load(data, table_name, query_part):
+    """Загрузка данных в приемник."""
 
     external_bi_engine.execute(
         f"""DELETE FROM dbo.{table_name}""" + query_part,
@@ -63,6 +62,8 @@ def load(data, table_name, query_part):
 
 
 def etl(table_name, **context):
+    """Collable-объект. вызываемый оркестратором."""
+
     if not context['prev_execution_date_success']:
         query_part = ''
     elif table_name in ('vw_optimatica_dealers',
@@ -81,11 +82,25 @@ def etl(table_name, **context):
         query_part
     )
 
+    data_in_sorce = pd.read_sql_query(
+        f"""SELECT COUNT(*) FROM sttgaz.{table_name}""",
+        dwh_engine,
+    )
 
+    data_in_ext_BI = pd.read_sql_query(
+        f"""SELECT COUNT(*) FROM dbo.{table_name}""",
+        external_bi_engine,
+    )
+
+    if data_in_sorce != data_in_ext_BI:
+        raise Exception(f'Количество записей в источнике и приемнике не совпадает: {data_in_sorce} != {data_in_ext_BI}')      
+
+
+#-------------- DAG -----------------
 default_args = {
     'owner': 'Швейников Андрей',
     'email': ['shveynikovab@st.tech'],
-    'retries': 4,
+    'retries': 2,
     'retry_delay': dt.timedelta(minutes=30),
 }
 with DAG(
