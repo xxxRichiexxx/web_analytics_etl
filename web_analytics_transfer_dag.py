@@ -92,7 +92,7 @@ def etl(table_name, **context):
         external_bi_engine,
     )
 
-    if data_in_sorce != data_in_ext_BI:
+    if data_in_sorce.values[0][0] != data_in_ext_BI.values[0][0]:
         raise Exception(f'Количество записей в источнике и приемнике не совпадает: {data_in_sorce} != {data_in_ext_BI}')      
 
 
