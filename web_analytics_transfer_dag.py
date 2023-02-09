@@ -64,6 +64,7 @@ def load(data, table_name, query_part):
 def etl(table_name, **context):
     """Collable-объект. вызываемый оркестратором."""
 
+    print('ДАТА ПРЕДЫДУЩЕГО УДАЧНОГО ЗАПУСКА', context['prev_execution_date_success'])
     if not context['prev_execution_date_success']:
         query_part = ''
     elif table_name in ('vw_optimatica_dealers',
