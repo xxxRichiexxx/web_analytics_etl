@@ -30,8 +30,14 @@ dwh_engine = sa.create_engine(
 
 
 def extract(table_name, query_part):
+
+    with open(fr'/home/da/airflow/dags/web_analytics_etl/{table_name}.sql', 'r') as f:
+        command = f.read() + query_part
+
+    print(command)
+
     return pd.read_sql_query(
-        f"""SELECT * FROM sttgaz.{table_name} LIMIT 10""" + query_part,
+        command,
         dwh_engine,
     )
 
@@ -42,10 +48,10 @@ def transform(data):
 
 def load(data, table_name, query_part):
 
-    pd.read_sql_query(
-        f"""DELETE FROM dbo.{table_name}""" + query_part,
-        external_bi_engine,
-    )
+    # pd.read_sql_query(
+    #     f"""DELETE FROM dbo.{table_name}""" + query_part,
+    #     external_bi_engine,
+    # )
     print(data)
 
     data.to_sql(

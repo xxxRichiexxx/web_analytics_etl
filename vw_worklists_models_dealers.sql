@@ -1,0 +1,22 @@
+SELECT
+    COALESCE(ym_s_visitID, 0) AS ym_s_visitID,
+    COALESCE(ym_s_counterID, 0) AS ym_s_counterID,
+    COALESCE(cid, 0) cid,
+    format_ads,
+    COALESCE("ID Сессии в Я.Метрика (заявки)", 0) AS "ID Сессии в Я.Метрика (заявки)",
+    "Домен (заявки)",
+    "Дата события CRM",
+    "Заявки",
+    "Рабочие листы",
+    "Договора",
+    "Выданные ТС",
+    "Домен метрики",
+    grouping,
+    source_detail,
+    medium,
+    source,
+    model,
+    "Дилер",
+    "Федеральный округ",
+    "Город"
+FROM sttgaz.vw_worklists_models_dealers;

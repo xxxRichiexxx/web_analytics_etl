@@ -55,7 +55,6 @@ def etl(table_name, **context):
 
     query_part = ''
 
-
     load(
         transform(
             extract(table_name, query_part)
