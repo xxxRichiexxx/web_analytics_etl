@@ -106,9 +106,9 @@ with DAG(
         data_types = (
             'vw_optimatica_dealers',
             'vw_total_dealers',
-            # 'vw_total_dealers_all',
-            # 'vw_worklists_models_dealers',
-            # 'vw_worklists_models_dealers_all',
+            'vw_total_dealers_all',
+            'vw_worklists_models_dealers',
+            'vw_worklists_models_dealers_all',
         )
         for data_type in data_types:
             tasks.append(
@@ -119,7 +119,7 @@ with DAG(
                 )
             )
 
-        # tasks[0] >> tasks[1] >> tasks[2] >> tasks[3] >> tasks[4]
+        tasks[0] >> tasks[1] >> tasks[2] >> tasks[3] >> tasks[4]
 
     end = DummyOperator(task_id='Конец')
 
