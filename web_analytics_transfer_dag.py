@@ -42,10 +42,10 @@ def transform(data):
 
 def load(data, table_name, query_part):
 
-    # pd.read_sql_query(
-    #     f"""DELETE FROM {table_name}""" + query_part,
-    #     external_bi_engine,
-    # )
+    pd.read_sql_query(
+        f"""DELETE FROM dbo.{table_name}""" + query_part,
+        external_bi_engine,
+    )
     print(data)
 
     data.to_sql(

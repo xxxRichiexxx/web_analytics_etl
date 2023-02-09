@@ -83,7 +83,7 @@ CREATE TABLE dbo.vw_worklists_models_dealers
     Город varchar(34),
     ym_s_visitID numeric(30,0),
     ym_s_counterID numeric(30,0),
-    cid int,
+    cid bigint,
     format_ads varchar(33)
 );
 
@@ -102,6 +102,6 @@ CREATE TABLE dbo.vw_worklists_models_dealers_all
     source varchar(57),
     ym_s_visitID numeric(30,0),
     ym_s_counterID numeric(30,0),
-    cid int,
+    cid bigint,
     format_ads varchar(33)
 );
