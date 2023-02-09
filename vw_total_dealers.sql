@@ -5,7 +5,7 @@ SELECT
     COALESCE(visitID, 0) AS visitID,
     model,
     content,
-    COALESCE(cid, 0) AS cid,
+    cid,
     pageViews,
     dateTime_visit,
     grouping,

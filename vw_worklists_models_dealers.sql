@@ -1,9 +1,9 @@
 SELECT
     COALESCE(ym_s_visitID, 0) AS ym_s_visitID,
     COALESCE(ym_s_counterID, 0) AS ym_s_counterID,
-    COALESCE(cid, 0) cid,
+    cid,
     format_ads,
-    COALESCE("ID Сессии в Я.Метрика (заявки)", 0) AS "ID Сессии в Я.Метрика (заявки)",
+    "ID Сессии в Я.Метрика (заявки)",
     "Домен (заявки)",
     "Дата события CRM",
     "Заявки",

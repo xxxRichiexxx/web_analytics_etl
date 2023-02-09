@@ -7,6 +7,6 @@ SELECT
     model,
     media,
     plan_price,
-    avg plan price,
-    avg fact price,
+    "avg plan price",
+    "avg fact price",
 FROM sttgaz.vw_optimatica_dealers;

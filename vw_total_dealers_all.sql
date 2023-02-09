@@ -12,6 +12,6 @@ SELECT
     count_visit,
     count_goals,
     content,
-    COALESCE(cid, 0) AS cid,
+    cid,
     bounce,
 FROM sttgaz.vw_total_dealers_all;
