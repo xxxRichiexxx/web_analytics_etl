@@ -22,7 +22,7 @@ external_bi_db = 'sttt_data_marts'
 external_bi_str = fr'mssql://{external_bi_username}:{external_bi_password}@{external_bi_host}/{external_bi_db}?driver=ODBC Driver 18 for SQL Server&TrustServerCertificate=yes'
 external_bi_engine = sa.create_engine(external_bi_str)
 
-dwh_con = BaseHook.get_connection('vertica')
+dwh_con = BaseHook.get_connection('to_vertica_with_power_bi_cred')
 ps = quote(dwh_con.password)
 dwh_engine = sa.create_engine(
     f'vertica+vertica_python://{dwh_con.login}:{ps}@{dwh_con.host}:{dwh_con.port}/sttgaz'
