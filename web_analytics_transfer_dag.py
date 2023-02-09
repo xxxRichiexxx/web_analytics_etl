@@ -20,7 +20,6 @@ external_bi_password = quote(external_bi_con.password)
 external_bi_host = external_bi_con.host
 external_bi_db = 'sttt_data_marts'
 external_bi_str = fr'mssql://{external_bi_username}:{external_bi_password}@{external_bi_host}/{external_bi_db}?driver=ODBC Driver 18 for SQL Server&TrustServerCertificate=yes'
-print(external_bi_str)
 external_bi_engine = sa.create_engine(external_bi_str)
 
 dwh_con = BaseHook.get_connection('vertica')
@@ -47,6 +46,7 @@ def load(data, table_name, query_part):
     #     f"""DELETE FROM {table_name}""" + query_part,
     #     external_bi_engine,
     # )
+    print(external_bi_str)
 
     data.to_sql(
         table_name,
