@@ -32,7 +32,7 @@ dwh_engine = sa.create_engine(
 def extract(table_name, query_part):
     return pd.read_sql_query(
         f"""SELECT * FROM sttgaz.{table_name}""" + query_part,
-        dwh_engine
+        dwh_engine,
     )
 
 
@@ -44,7 +44,7 @@ def load(data, table_name, query_part):
 
     pd.read_sql_query(
         f"""DELETE FROM {table_name}""" + query_part,
-        vexternal_bi_engine,
+        external_bi_engine,
     )
 
     data.to_sql(
@@ -62,10 +62,10 @@ def etl(table_name, **context):
     elif table_name in ('vw_optimatica_dealers',
                         'vw_total_dealers',
                         'vw_total_dealers_all'):
-        query_part = f"""WHERE ym_s_date >= {context['execution_date'] - dt.timedelta(month=2)}"""
+        query_part = f"""WHERE ym_s_date >= {context['execution_date'] - dt.timedelta(days=60)}"""
     elif table_name in ('vw_worklists_models_dealers',
                         'vw_worklists_models_dealers_all'):
-        query_part = f"""WHERE "Дата события CRM" >= {context['execution_date'] - dt.timedelta(month=2)}"""
+        query_part = f"""WHERE "Дата события CRM" >= {context['execution_date'] - dt.timedelta(days=60)}"""
 
     load(
         transform(
