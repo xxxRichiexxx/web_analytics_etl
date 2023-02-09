@@ -46,7 +46,7 @@ def load(data, table_name, query_part):
     #     f"""DELETE FROM {table_name}""" + query_part,
     #     external_bi_engine,
     # )
-    print(external_bi_str)
+    print(data)
 
     data.to_sql(
         table_name,

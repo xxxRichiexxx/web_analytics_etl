@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS dbo.vw_optimatica_dealers
 CREATE TABLE dbo.vw_optimatica_dealers
 (
     date date,
@@ -12,13 +13,14 @@ CREATE TABLE dbo.vw_optimatica_dealers
     "avg fact price" float
 );
 
+DROP TABLE IF EXISTS dbo.vw_total_dealers
 CREATE TABLE dbo.vw_total_dealers
 (
     ym_s_date date,
     ym_s_clientID numeric(30,0),
     num_user int,
     visitID numeric(30,0),
-    dateTime_visit timestamp,
+    dateTime_visit datetime,
     grouping varchar(2000),
     source_detail varchar(4000),
     ym_s_startURL_domain text,
@@ -40,14 +42,14 @@ CREATE TABLE dbo.vw_total_dealers
     count_goals int
 );
 
-
+DROP TABLE IF EXISTS dbo.vw_total_dealers_all
 CREATE TABLE dbo.vw_total_dealers_all
 (
     ym_s_date date,
     ym_s_clientID numeric(30,0),
     num_user int,
     visitID numeric(30,0),
-    dateTime_visit timestamp,
+    dateTime_visit datetime,
     grouping varchar(2000),
     source_detail varchar(4000),
     source varchar(57),
@@ -60,7 +62,7 @@ CREATE TABLE dbo.vw_total_dealers_all
     count_goals int
 );
 
-
+DROP TABLE IF EXISTS dbo.vw_worklists_models_dealers
 CREATE TABLE dbo.vw_worklists_models_dealers
 (
     "ID Сессии в Я.Метрика (заявки)" varchar(30),
@@ -85,7 +87,7 @@ CREATE TABLE dbo.vw_worklists_models_dealers
     format_ads varchar(33)
 );
 
-
+DROP TABLE IF EXISTS dbo.vw_worklists_models_dealers_all
 CREATE TABLE dbo.vw_worklists_models_dealers_all
 (
     "ID Сессии в Я.Метрика (заявки)" varchar(30),
