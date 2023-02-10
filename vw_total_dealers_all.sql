@@ -14,4 +14,4 @@ SELECT
     content,
     cid,
     bounce
-FROM sttgaz.vw_total_dealers_all;
+FROM sttgaz.vw_total_dealers_all

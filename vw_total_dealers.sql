@@ -23,4 +23,4 @@ SELECT
     source_2,
     medium,
     campaign
-FROM sttgaz.vw_total_dealers;
+FROM sttgaz.vw_total_dealers

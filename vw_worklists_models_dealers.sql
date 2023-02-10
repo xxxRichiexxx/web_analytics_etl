@@ -19,4 +19,4 @@ SELECT
     "Дилер",
     "Федеральный округ",
     "Город"
-FROM sttgaz.vw_worklists_models_dealers;
+FROM sttgaz.vw_worklists_models_dealers

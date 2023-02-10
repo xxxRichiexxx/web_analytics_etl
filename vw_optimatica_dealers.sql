@@ -9,4 +9,4 @@ SELECT
     plan_price,
     "avg plan price",
     "avg fact price"
-FROM sttgaz.vw_optimatica_dealers;
+FROM sttgaz.vw_optimatica_dealers
