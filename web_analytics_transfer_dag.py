@@ -70,10 +70,10 @@ def etl(table_name, **context):
     elif table_name in ('vw_optimatica_dealers',
                         'vw_total_dealers',
                         'vw_total_dealers_all'):
-        query_part = f""" WHERE ym_s_date >= {context['execution_date'] - dt.timedelta(days=60)}"""
+        query_part = f""" WHERE ym_s_date >= '{context['execution_date'] - dt.timedelta(days=60)}'"""
     elif table_name in ('vw_worklists_models_dealers',
                         'vw_worklists_models_dealers_all'):
-        query_part = f""" WHERE "Дата события CRM" >= {context['execution_date'] - dt.timedelta(days=60)}"""
+        query_part = f""" WHERE "Дата события CRM" >= '{context['execution_date'] - dt.timedelta(days=60)}'"""
 
     load(
         transform(
