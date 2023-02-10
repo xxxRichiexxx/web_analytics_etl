@@ -76,7 +76,7 @@ def etl(table_name, **context):
                         'vw_worklists_models_dealers_all'):
         query_part = f""" WHERE "Дата события CRM" >= '{start_date}'"""
     else:
-        f""" WHERE date >= '{start_date}'"""
+        query_part = f""" WHERE date >= '{start_date}'"""
 
     load(
         transform(
