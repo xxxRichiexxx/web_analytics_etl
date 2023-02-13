@@ -65,18 +65,18 @@ def etl(table_name, **context):
     """Collable-объект. вызываемый оркестратором."""
 
     print('ДАТА ПРЕДЫДУЩЕГО УДАЧНОГО ЗАПУСКА', context['prev_execution_date_success'])
-    start_date = context['execution_date'].date() - dt.timedelta(days=60)
+    execution_date = context['execution_date'].date()
 
     if not context['prev_execution_date_success']:
         query_part = ''
     elif table_name in ('vw_total_dealers',
                         'vw_total_dealers_all'):
-        query_part = f""" WHERE ym_s_date >= '{start_date}'"""
+        query_part = f""" WHERE ym_s_date >= '{execution_date - dt.timedelta(days=40)}'"""
     elif table_name in ('vw_worklists_models_dealers',
                         'vw_worklists_models_dealers_all'):
-        query_part = f""" WHERE "Дата события CRM" >= '{start_date}'"""
+        query_part = f""" WHERE "Дата события CRM" >= '{execution_date - dt.timedelta(days=40)}'"""
     else:
-        query_part = f""" WHERE date >= '{start_date}'"""
+        query_part = f""" WHERE date >= '{execution_date - dt.timedelta(days=370)}'"""
 
     load(
         transform(
