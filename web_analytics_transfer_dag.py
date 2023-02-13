@@ -76,7 +76,7 @@ def etl(table_name, **context):
                         'vw_worklists_models_dealers_all'):
         query_part = f""" WHERE "Дата события CRM" >= '{execution_date - dt.timedelta(days=40)}'"""
     else:
-        query_part = f""" WHERE date >= '{execution_date - dt.timedelta(days=370)}'"""
+        query_part = f""" WHERE date >= '{execution_date - dt.timedelta(days=450)}'"""
 
     load(
         transform(
