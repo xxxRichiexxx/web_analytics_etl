@@ -74,7 +74,7 @@ def etl(table_name, **context):
         query_part = f""" WHERE ym_s_date >= '{execution_date - dt.timedelta(days=40)}'"""
     elif table_name in ('vw_worklists_models_dealers',
                         'vw_worklists_models_dealers_all'):
-        query_part = f""" WHERE "Дата события CRM" >= '{execution_date - dt.timedelta(days=100)}'"""
+        query_part = f""" WHERE "Дата события CRM" >= '{execution_date - dt.timedelta(days=130)}'"""
     else:
         query_part = f""" WHERE date >= '{execution_date - dt.timedelta(days=450)}'"""
 
